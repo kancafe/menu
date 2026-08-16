@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كان كافيه | Kan Café — دمنهور</title>
+<meta name="description" content="كان كافيه في دمنهور. قهوة، حلويات، وأجواء هادية. احجز مكانك دلوقتي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon-deep:#2E0B15;
+    --maroon:#5C1A2B;
+    --maroon-soft:#7A2438;
+    --gold:#C89B3C;
+    --gold-light:#E7C877;
+    --cream:#F4E9D8;
+    --cream-soft:#FBF5EA;
+    --ink:#241108;
+    --shadow: 0 20px 50px rgba(46,11,21,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Tajawal', sans-serif;
+    background:var(--cream-soft);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand,.eyebrow{font-family:'Aref Ruqaa', serif;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  /* ===== Header ===== */
+  header{
+    position:fixed; top:0; right:0; left:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6%;
+    background:rgba(46,11,21,0.0);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+  }
+  header.scrolled{
+    background:rgba(46,11,21,0.92);
+    backdrop-filter:blur(8px);
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    padding:12px 6%;
+  }
+  .brand{font-size:1.7rem; color:var(--gold-light); font-weight:700; letter-spacing:1px;}
+  nav ul{display:flex; gap:34px;}
+  nav a{color:var(--cream); font-size:0.98rem; position:relative; padding:4px 2px;}
+  nav a::after{
+    content:""; position:absolute; right:0; bottom:-4px; width:0; height:2px;
+    background:var(--gold); transition:width .3s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; z-index:1100;}
+  .menu-toggle span{width:26px; height:2px; background:var(--cream);}
+
+  /* ===== Hero ===== */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% 20%, var(--maroon-soft) 0%, var(--maroon) 45%, var(--maroon-deep) 100%);
+    position:relative; overflow:hidden; padding:120px 6% 80px;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(45deg, rgba(200,155,60,0.035) 0 2px, transparent 2px 40px);
+    pointer-events:none;
+  }
+  .steam{position:absolute; bottom:0; opacity:0.5;}
+  .steam svg{width:60px; height:220px;}
+  .steam path{
+    fill:none; stroke:var(--gold-light); stroke-width:2; stroke-linecap:round;
+    stroke-dasharray:300; stroke-dashoffset:300;
+    animation:rise 6s ease-in-out infinite;
+  }
+  .steam.s1{left:8%; animation-delay:0s;}
+  .steam.s2{right:10%;}
+  .steam.s2 path{animation-delay:1.5s;}
+  @keyframes rise{
+    0%{stroke-dashoffset:300; opacity:0;}
+    20%{opacity:0.6;}
+    70%{opacity:0.2;}
+    100%{stroke-dashoffset:0; opacity:0;}
+  }
+  .eyebrow{
+    color:var(--gold); letter-spacing:4px; font-size:1rem; margin-bottom:18px;
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(3.5rem, 12vw, 7.5rem);
+    color:var(--cream);
+    line-height:1;
+    text-shadow:0 6px 30px rgba(0,0,0,0.35);
+  }
+  .hero p.tag{
+    color:var(--cream); opacity:0.85; font-size:clamp(1.1rem,3vw,1.5rem);
+    margin-top:22px; max-width:520px; font-weight:300;
+  }
+  .hero-ctas{display:flex; gap:18px; margin-top:44px; flex-wrap:wrap; justify-content:center;}
+  .btn{
+    padding:15px 36px; border-radius:2px; font-weight:700; font-size:1rem;
+    border:2px solid transparent; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease;
+    display:inline-block;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .btn-gold{background:var(--gold); color:var(--maroon-deep); box-shadow:0 10px 26px rgba(200,155,60,0.35);}
+  .btn-outline{border-color:var(--gold-light); color:var(--cream);}
+
+  .hairline{width:70px; height:3px; background:var(--gold); margin:0 auto 22px;}
+
+  /* ===== Sections ===== */
+  section{padding:120px 6%;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 60px;}
+  .section-head .eyebrow{color:var(--maroon-soft);}
+  .section-head h2{font-size:clamp(2.2rem,5vw,3rem); color:var(--maroon-deep);}
+  .section-head p{margin-top:16px; color:#5a4a3d; font-size:1.05rem; line-height:1.9;}
+
+  /* About */
+  .about{background:var(--cream-soft);}
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+    max-width:1100px; margin:0 auto;
+  }
+  .about-features{display:flex; flex-direction:column; gap:26px;}
+  .feature{display:flex; gap:16px; align-items:flex-start;}
+  .feature-mark{
+    flex-shrink:0; width:44px; height:44px; border-radius:50%;
+    background:var(--maroon); color:var(--gold-light); display:flex; align-items:center; justify-content:center;
+    font-family:'Aref Ruqaa',serif; font-size:1.3rem;
+  }
+  .feature h3{font-size:1.15rem; color:var(--maroon-deep); margin-bottom:4px;}
+  .feature p{color:#5a4a3d; font-size:0.95rem; line-height:1.7;}
+  .about-quote{
+    background:var(--maroon-deep); color:var(--cream); padding:50px 40px;
+    position:relative; border-radius:4px; box-shadow:var(--shadow);
+  }
+  .about-quote .eyebrow{color:var(--gold);}
+  .about-quote p{font-family:'Aref Ruqaa',serif; font-size:1.6rem; line-height:1.9; margin-top:10px;}
+
+  /* Offer banner */
+  .offer{
+    background:linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    color:var(--maroon-deep); text-align:center; padding:34px 6%;
+    font-weight:800; font-size:1.05rem; line-height:1.8;
+  }
+  .offer span{display:block; font-family:'Aref Ruqaa',serif; font-size:1.5rem; margin-bottom:6px;}
+
+  /* Menu */
+  .menu{background:var(--cream-soft);}
+  .menu-tabs{
+    display:flex; overflow-x:auto; gap:4px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:44px; scrollbar-width:none;
+  }
+  .menu-tabs::-webkit-scrollbar{display:none;}
+  .menu-tab-btn{
+    flex:0 0 auto; background:none; border:none; cursor:pointer;
+    font-family:'Tajawal',sans-serif; font-weight:700; font-size:0.98rem;
+    color:var(--maroon-deep); padding:12px 26px; border-bottom:3px solid transparent;
+    transition:all .25s ease; white-space:nowrap;
+  }
+  .menu-tab-btn .ico{display:block; font-size:1.1rem; margin-bottom:2px;}
+  .menu-tab-btn.active{color:var(--maroon); border-bottom-color:var(--gold); background:rgba(200,155,60,0.08);}
+  .menu-panel{display:none; animation:menuFade .35s ease;}
+  .menu-panel.active{display:block;}
+  @keyframes menuFade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .panel-intro{text-align:center; color:#5a4a3d; font-size:0.95rem; margin-bottom:6px;}
+  .category-grid{display:grid; grid-template-columns:1fr; gap:20px; margin-top:14px;}
+  @media(min-width:640px){.category-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.category-grid{grid-template-columns:1fr 1fr 1fr;}}
+  .category-card{
+    background:#fff; border:1px solid rgba(74,20,32,0.08); border-radius:12px;
+    box-shadow:0 8px 24px rgba(74,20,32,0.08); padding:18px 20px 12px;
+  }
+  .category-title{
+    font-family:'Aref Ruqaa',serif; color:var(--maroon); font-size:1.25rem; font-weight:700;
+    display:flex; align-items:center; gap:8px; margin:0 0 10px;
+    border-bottom:2px solid var(--gold-light); padding-bottom:8px;
+  }
+  .menu-row{display:flex; align-items:baseline; gap:8px; padding:7px 0; font-size:0.98rem;}
+  .menu-row + .menu-row{border-top:1px dashed rgba(90,74,61,0.2);}
+  .item-name{color:var(--ink); font-weight:500; white-space:nowrap;}
+  .leader{flex:1; border-bottom:2px dotted rgba(200,155,60,0.55); margin-bottom:5px;}
+  .price{
+    font-weight:900; color:var(--maroon); white-space:nowrap; min-width:34px;
+    text-align:left; direction:ltr; display:inline-block;
+  }
+  .price::after{content:" ج"; font-weight:500; font-size:0.72em; color:#8a7a68;}
+  .price-dual{display:flex; gap:10px;}
+  .price-dual span{font-size:0.72rem; color:#8a7a68; font-weight:700;}
+  .note-box{background:var(--cream); border-radius:10px; padding:10px 14px; font-size:0.85rem; color:#5a4a3d; margin-top:10px;}
+
+  /* Booking */
+  .booking{
+    background:var(--maroon-deep); color:var(--cream); text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .booking::before{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(45deg, rgba(200,155,60,0.04) 0 2px, transparent 2px 40px);
+  }
+  .booking-inner{position:relative; max-width:640px; margin:0 auto;}
+  .booking h2{color:var(--cream);}
+  .booking p{color:var(--cream); opacity:0.85; margin-top:16px; font-size:1.05rem; line-height:1.9;}
+  .wa-btn{
+    margin-top:38px; display:inline-flex; align-items:center; gap:12px;
+    background:#25D366; color:#fff; padding:17px 40px; border-radius:40px;
+    font-weight:800; font-size:1.05rem; box-shadow:0 14px 30px rgba(37,211,102,0.3);
+  }
+  .wa-btn svg{width:24px; height:24px; fill:#fff;}
+  .event-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:20px; padding:14px 34px; border:2px solid var(--gold-light);
+    color:var(--cream); border-radius:40px; font-weight:700; font-size:0.98rem;
+    transition:all .25s ease;
+  }
+  .event-btn:hover{background:var(--gold-light); color:var(--maroon-deep); transform:translateY(-2px);}
+
+  /* Contact */
+  .contact{background:var(--cream-soft);}
+  .contact-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:50px; max-width:1000px; margin:0 auto; align-items:start;
+  }
+  .info-card{
+    background:#fff; border:1px solid #e8dcc8; border-radius:8px; padding:36px;
+    box-shadow:0 10px 30px rgba(46,11,21,0.06);
+  }
+  .info-row{display:flex; gap:16px; align-items:flex-start; margin-bottom:24px;}
+  .info-row:last-child{margin-bottom:0;}
+  .info-row .ic{color:var(--gold); font-family:'Aref Ruqaa',serif; font-size:1.4rem; flex-shrink:0;}
+  .info-row h4{font-size:1rem; color:var(--maroon-deep); margin-bottom:3px;}
+  .info-row p, .info-row a{color:#5a4a3d; font-size:0.95rem;}
+  .map-frame{
+    border-radius:8px; overflow:hidden; box-shadow:0 10px 30px rgba(46,11,21,0.06);
+    aspect-ratio:1/1; background:var(--maroon); display:flex; align-items:center; justify-content:center;
+  }
+  .map-frame a{
+    color:var(--cream); text-align:center; padding:30px; font-family:'Aref Ruqaa',serif; font-size:1.3rem;
+    border:2px solid var(--gold); border-radius:50%; width:70%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+  }
+
+  footer{
+    background:var(--maroon-deep); color:var(--cream); text-align:center; padding:44px 6% 30px;
+  }
+  footer .brand{font-size:1.5rem; color:var(--gold-light);}
+  footer p{margin-top:10px; font-size:0.85rem; opacity:0.6;}
+
+  /* ===== Events section ===== */
+  .events{background:var(--cream-soft);}
+  .ev-occ-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+    max-width:1000px; margin:0 auto 60px;
+  }
+  .ev-occ-card{
+    background:#fff; border:1px solid #e8dcc6; padding:40px 26px 30px;
+    text-align:center; border-radius:8px; transition:.3s;
+    box-shadow:0 8px 24px rgba(46,11,21,0.06);
+  }
+  .ev-occ-card:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(46,11,21,0.12);}
+  .ev-occ-icon{font-size:2.2rem; margin-bottom:14px;}
+  .ev-occ-card h3{font-family:'Aref Ruqaa',serif; font-size:1.6rem; color:var(--maroon); margin-bottom:10px;}
+  .ev-occ-card p{font-size:0.9rem; color:#6b5158; line-height:1.9; margin-bottom:22px; min-height:66px;}
+  .ev-occ-btn{
+    display:inline-block; padding:10px 26px; border:1.5px solid var(--maroon);
+    color:var(--maroon); font-size:0.85rem; font-weight:700; letter-spacing:.5px;
+    border-radius:30px; transition:.25s; cursor:pointer;
+  }
+  .ev-occ-btn:hover{background:var(--maroon); color:var(--cream);}
+
+  .ev-features{
+    max-width:900px; margin:0 auto 60px; display:grid; grid-template-columns:repeat(4,1fr);
+    gap:20px; text-align:center; background:var(--maroon-deep); color:var(--gold-light);
+    padding:36px 20px; border-radius:10px; font-size:0.9rem;
+  }
+
+  .ev-form-wrap{max-width:640px; margin:0 auto;}
+  .ev-hint{text-align:center; color:var(--maroon); font-size:0.95rem; margin-bottom:20px; min-height:1.2em;}
+  .ev-form-wrap form{
+    background:#fff; border:1px solid #e8dcc6; padding:40px 34px; border-radius:8px;
+    box-shadow:0 10px 30px rgba(46,11,21,0.06);
+  }
+  .ev-field{margin-bottom:20px;}
+  .ev-field label{display:block; font-size:0.85rem; color:var(--maroon); font-weight:700; margin-bottom:8px;}
+  .ev-field input, .ev-field select, .ev-field textarea{
+    width:100%; padding:12px 14px; border:1px solid #ddcdb4; background:var(--cream-soft);
+    font-family:'Tajawal',sans-serif; font-size:0.9rem; color:var(--ink); outline:none; border-radius:4px;
+  }
+  .ev-field input:focus, .ev-field select:focus, .ev-field textarea:focus{border-color:var(--gold);}
+  .ev-row2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .ev-submit{
+    width:100%; padding:15px; margin-top:6px; background:var(--maroon); color:var(--cream);
+    border:none; font-weight:700; font-size:0.95rem; letter-spacing:1px; cursor:pointer;
+    border-radius:4px; transition:.25s;
+  }
+  .ev-submit:hover{background:var(--maroon-soft);}
+  .ev-note{text-align:center; font-size:0.78rem; color:#8a7169; margin-top:14px;}
+
+  /* Responsive */
+  @media(max-width:860px){
+    nav{
+      position:fixed; inset:0 0 0 auto; width:78%; background:var(--maroon-deep);
+      flex-direction:column; padding:110px 40px; transform:translateX(100%);
+      transition:transform .4s ease; z-index:1050;
+    }
+    nav.open{transform:translateX(0);}
+    nav ul{flex-direction:column; gap:26px; font-size:1.2rem;}
+    .menu-toggle{display:flex;}
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .menu-grid{grid-template-columns:1fr;}
+    .ev-occ-grid{grid-template-columns:1fr;}
+    .ev-features{grid-template-columns:repeat(2,1fr);}
+    .ev-row2{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .steam path{animation:none; opacity:0;}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="brand">كان</div>
+  <nav id="nav">
+    <ul>
+      <li><a href="#hero" class="nav-link">الرئيسية</a></li>
+      <li><a href="#about" class="nav-link">القصة</a></li>
+      <li><a href="#menu" class="nav-link">المنيو</a></li>
+      <li><a href="#events" class="nav-link">المناسبات</a></li>
+      <li><a href="#booking" class="nav-link">الحجز</a></li>
+      <li><a href="#contact" class="nav-link">تواصل</a></li>
+    </ul>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="hero" id="hero">
+  <div class="steam s1"><svg viewBox="0 0 60 220"><path d="M30 220 C10 190 50 170 30 140 C10 110 50 90 30 60 C10 30 50 20 30 0"/></svg></div>
+  <div class="steam s2"><svg viewBox="0 0 60 220"><path d="M30 220 C50 190 10 170 30 140 C50 110 10 90 30 60 C50 30 10 20 30 0"/></svg></div>
+  <span class="eyebrow">كان كافيه · دمنهور</span>
+  <h1>كان...</h1>
+  <div class="hero-ctas">
+    <a href="#booking" class="btn btn-gold">احجز مكانك</a>
+    <a href="#menu" class="btn btn-outline">شوف المنيو</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-quote">
+      <span class="eyebrow">كان... البداية</span>
+      <p>كان في دمنهور مكان يجمع الناس، مش بس عشان يشربوا قهوة، لأ عشان يعيشوا لحظة تخصهم. كان كافيه ركن هادي وسط الزحمة، بييجي فيه كل واحد يلاقي مكانه.</p>
+    </div>
+    <div class="about-features">
+      <div class="feature">
+        <div class="feature-mark">ق</div>
+        <div><h3>قهوة بعناية</h3><p>مشروبات بتتحضر بحب واهتمام، من أول كوب لآخر يوم.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-mark">ه</div>
+        <div><h3>أجواء هادية</h3><p>مكان مريح للشغل، للسهرة الهادية، أو لجلسة مع الأصحاب.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-mark">م</div>
+        <div><h3>مكان قريب منك</h3><p>في قلب دمنهور، سهل توصله وتلاقي مكانك بسرعة.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="section-head">
+    <span class="eyebrow">كان... على الطاولة</span>
+    <h2>المنيو</h2>
+  </div>
+
+  <div class="menu-tabs" id="menuTabs">
+    <button class="menu-tab-btn active" data-tab="hot"><span class="ico">🔥</span>ساخنة</button>
+    <button class="menu-tab-btn" data-tab="cold"><span class="ico">🧊</span>ساقعة</button>
+    <button class="menu-tab-btn" data-tab="dessert"><span class="ico">🍰</span>ديزرت</button>
+    <button class="menu-tab-btn" data-tab="extra"><span class="ico">➕</span>إضافات</button>
+  </div>
+
+  <!-- ===================== HOT DRINKS ===================== -->
+  <div class="menu-panel active" id="hot">
+    <p class="panel-intro">كل اللي دافي وبيدفّي — قهوة، شاي، شوكولاتة وأعشاب</p>
+    <div class="category-grid">
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">☕</span>مشروبات القهوة</h3>
+        <div class="menu-row"><span class="item-name">اسبريسو</span><span class="leader"></span><span class="price">65</span></div>
+        <div class="menu-row"><span class="item-name">ميكاتو</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">ميكاتو كراميل</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">كورتادو</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">لاتيه</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">كابتشينو</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">موكا</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">أمريكانو</span><span class="leader"></span><span class="price">60</span></div>
+        <div class="menu-row"><span class="item-name">سبانش لاتيه</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">فلات وايت</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">هامر هيد</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">قهوة سريعة التحضير</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">ماتشا</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">V60 كولومبي</span><span class="leader"></span><span class="price">100</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🫖</span>قهوة عربي وشاي</h3>
+        <div class="menu-row"><span class="item-name">قهوة عربي</span><span class="leader"></span><span class="price">70</span></div>
+        <div class="menu-row"><span class="item-name">شاي كرك</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">شاي عدني</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">شاي مبخر</span><span class="leader"></span><span class="price">50</span></div>
+        <div class="menu-row"><span class="item-name">شاي فليفر</span><span class="leader"></span><span class="price">65</span></div>
+        <div class="note-box">هوت سيدر 50 ج · أعشاب 45 ج · فيتامين C 50 ج</div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🍫</span>هوت شوكليت</h3>
+        <div class="menu-row"><span class="item-name">هوت شوكلت كلاسيك</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">هوت شوكلت اضافات</span><span class="leader"></span><span class="price">90</span></div>
+        <div class="menu-row"><span class="item-name">هوت شوكلت Kan</span><span class="leader"></span><span class="price">100</span></div>
+        <div class="menu-row"><span class="item-name">هوت شوكلت مارشميلو</span><span class="leader"></span><span class="price">90</span></div>
+        <div class="menu-row"><span class="item-name">سحلب كلاسيك</span><span class="leader"></span><span class="price">60</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🫘</span>قهوة تركي وفرنساوي</h3>
+        <div class="menu-row"><span class="item-name">قهوة تركي</span><span class="leader"></span>
+          <span class="price-dual"><span>S 35</span><span>D 40</span></span></div>
+        <div class="menu-row"><span class="item-name">قهوة استرونج</span><span class="leader"></span>
+          <span class="price-dual"><span>S 40</span><span>D 60</span></span></div>
+        <div class="menu-row"><span class="item-name">قهوة محوج</span><span class="leader"></span>
+          <span class="price-dual"><span>S 35</span><span>D 50</span></span></div>
+        <div class="menu-row"><span class="item-name">قهوة فرنساوي</span><span class="leader"></span>
+          <span class="price-dual"><span>D 65</span></span></div>
+        <div class="menu-row"><span class="item-name">فرنساوي إضافات</span><span class="leader"></span>
+          <span class="price-dual"><span>D 70</span></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== COLD DRINKS ===================== -->
+  <div class="menu-panel" id="cold">
+    <p class="panel-intro">كل اللي بارد ومنعش — آيس كوفي، عصائر، موكتيل وسوفت درينك</p>
+    <div class="category-grid">
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🧊</span>آيس كوفي</h3>
+        <div class="menu-row"><span class="item-name">آيس لاتيه</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">آيس دالجونا</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">آيس موكا</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">آيس بستاشيو لاتيه</span><span class="leader"></span><span class="price">95</span></div>
+        <div class="menu-row"><span class="item-name">آيس كراميل ميكاتو</span><span class="leader"></span><span class="price">95</span></div>
+        <div class="menu-row"><span class="item-name">آيس سبانش</span><span class="leader"></span><span class="price">90</span></div>
+        <div class="menu-row"><span class="item-name">آيس ماتشا</span><span class="leader"></span><span class="price">85</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🥤</span>فرباتشينو</h3>
+        <div class="menu-row"><span class="item-name">فرباتشينو كلاسيك</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">فرباتشينو موكا</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">فرباتشينو كراميل</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">Kan فرباتشينو</span><span class="leader"></span><span class="price">90</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🍹</span>عصائر فريش</h3>
+        <div class="menu-row"><span class="item-name">مانجا</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">برتقال</span><span class="leader"></span><span class="price">65</span></div>
+        <div class="menu-row"><span class="item-name">فراولة</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">ليمون نعناع</span><span class="leader"></span><span class="price">60</span></div>
+        <div class="menu-row"><span class="item-name">موز</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">بطيخ</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">كيوي</span><span class="leader"></span><span class="price">85</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🍸</span>موكتيل</h3>
+        <div class="menu-row"><span class="item-name">بلو بنانا</span><span class="leader"></span><span class="price">90</span></div>
+        <div class="menu-row"><span class="item-name">جوافة بلو بيري</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">فلوريدا</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">تروبيكال</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">وايت جولد</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">بينا كولادا</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">مانجو بيري</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">مانجو كيوي</span><span class="leader"></span><span class="price">95</span></div>
+        <div class="menu-row"><span class="item-name">أفريكانو</span><span class="leader"></span><span class="price">90</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🥛</span>سوفت درينك</h3>
+        <div class="menu-row"><span class="item-name">موهيتو كلاسيك</span><span class="leader"></span><span class="price">65</span></div>
+        <div class="menu-row"><span class="item-name">موهيتو فليفر</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">شيري كولا</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">صن شاين</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">باشون لايت</span><span class="leader"></span><span class="price">85</span></div>
+        <div class="menu-row"><span class="item-name">أورانج مست</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">مياه غازية</span><span class="leader"></span><span class="price">35</span></div>
+        <div class="menu-row"><span class="item-name">ريد بول</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">مياه معدنية</span><span class="leader"></span><span class="price">12</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🥤</span>شيك</h3>
+        <div class="menu-row"><span class="item-name">شيك كلاسيك</span><span class="leader"></span><span class="price">65</span></div>
+        <div class="menu-row"><span class="item-name">شيك فليفر</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">شيك اسبيشيال</span><span class="leader"></span><span class="price">110</span></div>
+        <div class="note-box">شيك اسبيشيال: تشيز كيك - ريد فيلفت - جلاكسي - براونيز</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== DESSERT ===================== -->
+  <div class="menu-panel" id="dessert">
+    <p class="panel-intro">تحلية على أصولها — كيك، وافل ومخبوزات كان</p>
+    <div class="category-grid">
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🍰</span>ديزرت</h3>
+        <div class="menu-row"><span class="item-name">تشيز كيك</span><span class="leader"></span><span class="price">70</span></div>
+        <div class="menu-row"><span class="item-name">سان سيباستيان</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">مولتن</span><span class="leader"></span><span class="price">95</span></div>
+        <div class="menu-row"><span class="item-name">ميني فادج</span><span class="leader"></span><span class="price">90</span></div>
+        <div class="menu-row"><span class="item-name">براونيز</span><span class="leader"></span><span class="price">75</span></div>
+        <div class="menu-row"><span class="item-name">سينابون</span><span class="leader"></span><span class="price">75</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🧇</span>وافل</h3>
+        <div class="menu-row"><span class="item-name">وافل كلاسيك</span><span class="leader"></span><span class="price">70</span></div>
+        <div class="menu-row"><span class="item-name">وافل فور سيزون</span><span class="leader"></span><span class="price">85</span></div>
+      </div>
+
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">🥐</span>مخبوزات</h3>
+        <div class="menu-row"><span class="item-name">ميكس تشيز</span><span class="leader"></span><span class="price">80</span></div>
+        <div class="menu-row"><span class="item-name">ميكس مدخن</span><span class="leader"></span><span class="price">100</span></div>
+        <div class="menu-row"><span class="item-name">ميكس بيف</span><span class="leader"></span><span class="price">115</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== EXTRAS ===================== -->
+  <div class="menu-panel" id="extra">
+    <p class="panel-intro">زوّد مشروبك زي ما يعجبك</p>
+    <div class="category-grid">
+      <div class="category-card">
+        <h3 class="category-title"><span class="emoji">➕</span>إضافات</h3>
+        <div class="menu-row"><span class="item-name">صوص</span><span class="leader"></span><span class="price">20</span></div>
+        <div class="menu-row"><span class="item-name">توبينج</span><span class="leader"></span><span class="price">30</span></div>
+        <div class="menu-row"><span class="item-name">فليفر</span><span class="leader"></span><span class="price">30</span></div>
+        <div class="menu-row"><span class="item-name">ويب كريم</span><span class="leader"></span><span class="price">30</span></div>
+        <div class="menu-row"><span class="item-name">حليب</span><span class="leader"></span><span class="price">30</span></div>
+        <div class="menu-row"><span class="item-name">مكسرات</span><span class="leader"></span><span class="price">35</span></div>
+        <div class="menu-row"><span class="item-name">عسل</span><span class="leader"></span><span class="price">20</span></div>
+        <div class="menu-row"><span class="item-name">آيس كريم</span><span class="leader"></span><span class="price">15</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <span class="eyebrow">كان... معانا</span>
+    <h2>احجز مكانك</h2>
+    <p>احجز ترابيزتك أو اطلب اللي نفسك فيه، ابعتلنا رسالة على واتساب وهنكون في الانتظار.</p>
+    <a class="wa-btn" href="https://wa.me/201040144888?text=عايز%20أحجز%20في%20كان%20كافيه" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.88L4 20l4.24-1.11a7.9 7.9 0 0 0 3.8.97h0a7.95 7.95 0 0 0 5.56-13.54zM12.05 18.4a6.56 6.56 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.6 6.6 0 1 1 5.59 3.09zm3.6-4.93c-.2-.1-1.17-.58-1.35-.64s-.32-.1-.45.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.6-.98 6 6 0 0 1-1.1-1.37c-.12-.2 0-.3.09-.4s.2-.23.3-.35a1.4 1.4 0 0 0 .2-.34.37.37 0 0 0 0-.35c-.05-.1-.45-1.08-.62-1.48s-.33-.33-.45-.34h-.38a.73.73 0 0 0-.53.25 2.24 2.24 0 0 0-.69 1.66 3.9 3.9 0 0 0 .81 2.06 8.9 8.9 0 0 0 3.4 3 10 10 0 0 0 1.14.42 2.74 2.74 0 0 0 1.26.08 2.06 2.06 0 0 0 1.35-.95 1.68 1.68 0 0 0 .12-.95c-.05-.09-.18-.14-.38-.24z"/></svg>
+      كلمنا على واتساب
+    </a>
+    <div>
+      <a class="event-btn" href="#events">🎉 احجز مناسبتك عندنا</a>
+    </div>
+  </div>
+</section>
+
+<section class="events" id="events">
+  <div class="section-head">
+    <span class="eyebrow">كان... يحتفل معاك</span>
+    <h2>احجز مناسبتك</h2>
+    <p>من فرحة عيد ميلاد، لدفء خطوبة، لبركة قراءة فاتحة.. كان بيوفرلك المكان المناسب عشان تحتفل باللحظة اللي تستاهل ✨</p>
+  </div>
+
+  <div class="ev-occ-grid">
+    <div class="ev-occ-card">
+      <div class="ev-occ-icon">🎂</div>
+      <h3>أعياد الميلاد</h3>
+      <p>احتفل بيوم ميلادك مع أقرب ناسك.. تورتة، ديكور، وجو مفرح يخلي السنة الجديدة تبدأ صح</p>
+      <span class="ev-occ-btn" onclick="goToBooking('عيد ميلاد')">احجز الآن</span>
+    </div>
+    <div class="ev-occ-card">
+      <div class="ev-occ-icon">💍</div>
+      <h3>الخطوبة</h3>
+      <p>بداية قصتكم تستاهل مكان يليق بيها.. أجواء راقية وتفاصيل مظبوطة تخلي يومكم لا يُنسى</p>
+      <span class="ev-occ-btn" onclick="goToBooking('خطوبة')">احجز الآن</span>
+    </div>
+    <div class="ev-occ-card">
+      <div class="ev-occ-icon">📖</div>
+      <h3>قراءة الفاتحة</h3>
+      <p>لحظة بركة وفرحة بين العيلتين.. جهزنالكم مكان هادي ومريح يليق بجمع الأهل</p>
+      <span class="ev-occ-btn" onclick="goToBooking('قراءة فاتحة')">احجز الآن</span>
+    </div>
+  </div>
+
+  <div class="ev-features">
+    <div>📶 Free Wifi</div>
+    <div>📸 ركن تصوير مميز</div>
+    <div>🍰 مشروبات وديزرت متنوعة</div>
+    <div>✨ ديكور هادي وراقي</div>
+  </div>
+
+  <div class="ev-form-wrap" id="eventsForm">
+    <p id="occasionHint" class="ev-hint"></p>
+    <form id="bookingForm">
+      <div class="ev-field">
+        <label>الاسم</label>
+        <input type="text" id="name" required placeholder="اكتب اسمك">
+      </div>
+      <div class="ev-row2">
+        <div class="ev-field">
+          <label>نوع المناسبة</label>
+          <select id="occasion">
+            <option value="عيد ميلاد">عيد ميلاد 🎂</option>
+            <option value="خطوبة">خطوبة 💍</option>
+            <option value="قراءة فاتحة">قراءة فاتحة 📖</option>
+            <option value="مناسبة تانية">مناسبة تانية</option>
+          </select>
+        </div>
+        <div class="ev-field">
+          <label>التاريخ المتوقع</label>
+          <input type="date" id="date">
+        </div>
+      </div>
+      <div class="ev-row2">
+        <div class="ev-field">
+          <label>عدد الضيوف تقريباً</label>
+          <input type="number" id="guests" min="1" placeholder="مثال: 15">
+        </div>
+        <div class="ev-field">
+          <label>رقم التواصل</label>
+          <input type="tel" id="phone" placeholder="01xxxxxxxxx">
+        </div>
+      </div>
+      <div class="ev-field">
+        <label>أي تفاصيل تانية؟</label>
+        <textarea id="notes" rows="3" placeholder="مثال: عايزين تورتة، بالون، وقت معين..."></textarea>
+      </div>
+      <button type="submit" class="ev-submit">إرسال طلب الحجز عبر واتساب</button>
+      <p class="ev-note">هيتم تحويلك لواتساب كان مع تفاصيل حجزك جاهزة للإرسال</p>
+    </form>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-head">
+    <span class="eyebrow">كان... جنبك</span>
+    <h2>تواصل معانا</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="info-card">
+      <div class="info-row">
+        <span class="ic">ع</span>
+        <div><h4>العنوان</h4><p>دوران الاستاد، امام رف هدوم، دمنهور</p></div>
+      </div>
+      <div class="info-row">
+        <span class="ic">ت</span>
+        <div><h4>تليفون / واتساب</h4><a href="tel:01040144888">01040144888</a></div>
+      </div>
+      <div class="info-row">
+        <span class="ic">م</span>
+        <div><h4>مواعيد العمل</h4><p>يوميًا من الساعة 9 الصبح لحد 2 بليل</p></div>
+      </div>
+    </div>
+    <div class="map-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=31.038060,30.460078" target="_blank" rel="noopener">شوف موقعنا<br>على الخريطة</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">كان</div>
+  <p>© كان كافيه — دمنهور</p>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', ()=>{
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', ()=> nav.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    l.addEventListener('click', ()=> nav.classList.remove('open'));
+  });
+
+  document.querySelectorAll('.menu-tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.menu-tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(g=>g.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  function goToBooking(occasion){
+    const select = document.getElementById('occasion');
+    select.value = occasion;
+    document.getElementById('occasionHint').textContent = `بتحجز دلوقتي لمناسبة: ${occasion} — كمّل بياناتك تحت 👇`;
+    document.getElementById('eventsForm').scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(()=>{ document.getElementById('name').focus(); }, 500);
+  }
+
+  document.getElementById('bookingForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const occasion = document.getElementById('occasion').value;
+    const date = document.getElementById('date').value;
+    const guests = document.getElementById('guests').value;
+    const phone = document.getElementById('phone').value;
+    const notes = document.getElementById('notes').value.trim();
+
+    let msg = `السلام عليكم، عايز أحجز مناسبة في كان كافيه ✨\n\n`;
+    msg += `الاسم: ${name}\n`;
+    msg += `نوع المناسبة: ${occasion}\n`;
+    if(date) msg += `التاريخ: ${date}\n`;
+    if(guests) msg += `عدد الضيوف: ${guests}\n`;
+    if(phone) msg += `رقم التواصل: ${phone}\n`;
+    if(notes) msg += `تفاصيل إضافية: ${notes}\n`;
+
+    const encoded = encodeURIComponent(msg);
+    window.open(`https://wa.me/201040144888?text=${encoded}`, '_blank');
+  });
+</script>
+
+</body>
+</html>
