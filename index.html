@@ -153,19 +153,57 @@
 
   /* Menu */
   .menu{background:var(--cream-soft);}
-  .menu-tabs{
-    display:flex; overflow-x:auto; gap:4px; justify-content:center; flex-wrap:wrap;
-    margin-bottom:44px; scrollbar-width:none;
-  }
-  .menu-tabs::-webkit-scrollbar{display:none;}
-  .menu-tab-btn{
-    flex:0 0 auto; background:none; border:none; cursor:pointer;
-    font-family:'Tajawal',sans-serif; font-weight:700; font-size:0.98rem;
-    color:var(--maroon-deep); padding:12px 26px; border-bottom:3px solid transparent;
-    transition:all .25s ease; white-space:nowrap;
-  }
-  .menu-tab-btn .ico{display:block; font-size:1.1rem; margin-bottom:2px;}
-  .menu-tab-btn.active{color:var(--maroon); border-bottom-color:var(--gold); background:rgba(200,155,60,0.08);}
+.menu-tabs{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:50px;
+  padding:12px;
+  background:#fff;
+  border:1px solid rgba(74,20,32,0.10);
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(46,11,21,0.08);
+}
+
+.menu-tabs::-webkit-scrollbar{
+  display:none;
+}
+
+.menu-tab-btn{
+  flex:1 1 180px;
+  min-width:150px;
+  background:var(--cream-soft);
+  border:2px solid transparent;
+  border-radius:14px;
+  cursor:pointer;
+  font-family:'Tajawal',sans-serif;
+  font-weight:800;
+  font-size:1.15rem;
+  color:var(--maroon-deep);
+  padding:18px 22px;
+  transition:all .25s ease;
+  white-space:nowrap;
+}
+
+.menu-tab-btn .ico{
+  display:block;
+  font-size:1.8rem;
+  margin-bottom:6px;
+}
+
+.menu-tab-btn:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold-light);
+  box-shadow:0 8px 18px rgba(46,11,21,0.10);
+}
+
+.menu-tab-btn.active{
+  color:var(--cream);
+  border-color:var(--gold);
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-soft));
+  box-shadow:0 10px 24px rgba(92,26,43,0.22);
+}
   .menu-panel{display:none; animation:menuFade .35s ease;}
   .menu-panel.active{display:block;}
   @keyframes menuFade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
