@@ -749,14 +749,27 @@
     l.addEventListener('click', ()=> nav.classList.remove('open'));
   });
 
-  document.querySelectorAll('.menu-tab-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.menu-tab-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.menu-panel').forEach(g=>g.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-    });
+ document.querySelectorAll('.menu-tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.menu-tab-btn')
+      .forEach(b=>b.classList.remove('active'));
+
+    document.querySelectorAll('.menu-panel')
+      .forEach(panel=>panel.classList.remove('active'));
+
+    btn.classList.add('active');
+
+    const targetPanel = document.getElementById(btn.dataset.tab);
+    targetPanel.classList.add('active');
+
+    setTimeout(() => {
+      targetPanel.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
   });
+});
 
   function goToBooking(occasion){
     const select = document.getElementById('occasion');
