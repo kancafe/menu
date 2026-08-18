@@ -763,16 +763,16 @@ document.querySelectorAll('.menu-tab-btn').forEach(btn=>{
     const targetPanel = document.getElementById(btn.dataset.tab);
     targetPanel.classList.add('active');
 
-    setTimeout(() => {
-      const menuSection = document.getElementById('menu');
+  setTimeout(() => {
+  const targetPanel = document.getElementById(btn.dataset.tab);
 
-      if (menuSection) {
-        menuSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }, 150);
+  if (targetPanel) {
+    targetPanel.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}, 150);
 
   });
 });
