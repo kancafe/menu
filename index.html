@@ -763,13 +763,13 @@ document.querySelectorAll('.menu-tab-btn').forEach(btn=>{
     const targetPanel = document.getElementById(btn.dataset.tab);
     targetPanel.classList.add('active');
 
-  setTimeout(() => {
-  const targetPanel = document.getElementById(btn.dataset.tab);
-
+setTimeout(() => {
   if (targetPanel) {
-    targetPanel.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+    const y = targetPanel.getBoundingClientRect().top + window.scrollY + 150;
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
     });
   }
 }, 150);
